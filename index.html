@@ -9,10 +9,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0d1117;
+            background-color: #0d1117; /* Bleu-gris foncé */
             background-size: cover;
             background-position: center;
-            color: #c9d1d9;
+            color: #c9d1d9; /* Gris clair */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,7 +21,7 @@
         }
         .container {
             text-align: center;
-            background: rgba(20, 24, 28, 0.9);
+            background: rgba(20, 24, 28, 0.9); /* Gris foncé transparent */
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
@@ -29,24 +29,24 @@
         }
         #title {
             font-size: 2.5em;
-            color: #58a6ff;
+            color: #58a6ff; /* Bleu néon */
             margin-bottom: 10px;
         }
         .subtitle {
             font-size: 1.5em;
-            color: #f0f6fc;
+            color: #f0f6fc; /* Blanc pur */
             margin-bottom: 20px;
         }
         .author, .info-section {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: #8b949e;
+            color: #8b949e; /* Gris doux */
         }
         button {
             padding: 10px 20px;
             font-size: 1em;
-            background-color: #21262d;
-            color: #58a6ff;
+            background-color: #21262d; /* Noir-gris */
+            color: #58a6ff; /* Bleu néon */
             border: 2px solid #58a6ff;
             border-radius: 5px;
             cursor: pointer;
@@ -55,12 +55,22 @@
         }
         button:hover {
             background-color: #58a6ff;
-            color: #0d1117;
+            color: #0d1117; /* Contraste avec le fond */
         }
         #message {
             margin-top: 20px;
             font-size: 1.2em;
-            color: #39d353;
+            color: #39d353; /* Vert néon */
+        }
+        .theme-switcher {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -72,14 +82,19 @@
         
         <!-- Bouton pour afficher un message -->
         <button id="infoButton">Afficher un message</button>
+        
+        <!-- Message caché -->
         <p id="message" style="display: none;">Bienvenue sur le projet de déploiement WEB !</p>
+        
+        <!-- Compteur de clics -->
+        <p id="counter" style="margin-top: 20px; font-size: 1.2em;">Bouton cliqué : 0 fois</p>
 
         <!-- Sélecteur de thème -->
         <div class="theme-switcher">
             <button id="themeButton">Changer de Thème</button>
         </div>
 
-        <!-- Informations personnelles -->
+        <!-- Informations supplémentaires -->
         <div class="info-section">
             <h3>À propos de Majdi Dridi</h3>
             <ul>
@@ -96,42 +111,68 @@
                 <li><strong>Logiciels préférés :</strong> Android Studio, XAMPP, PlatformIO</li>
             </ul>
         </div>
-
-        <!-- Bouton pour ouvrir le CV -->
-        <button id="cvButton">Voir mon CV</button>
     </div>
 
     <script>
-        // Afficher ou cacher un message
         const infoButton = document.getElementById('infoButton');
         const message = document.getElementById('message');
-        infoButton.addEventListener('click', function () {
-            message.style.display = message.style.display === 'none' ? 'block' : 'none';
-        });
-
-        // Changer de thème
+        const counter = document.getElementById('counter');
         const themeButton = document.getElementById('themeButton');
         const body = document.body;
         const container = document.querySelector('.container');
+        let clickCount = 0;
+
+        // Liste des images de fond
+        const backgrounds = [
+            'image1.webp',
+            'image2.jpg',
+            'image3.jpg'
+        ];
+
+        // Index de l'image actuelle
+        let currentBackgroundIndex = 0;
+
+        // Afficher ou cacher le message, changer l'image et incrémenter le compteur
+        infoButton.addEventListener('click', function () {
+            if (message.style.display === 'none') {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+            clickCount++;
+            counter.textContent = Bouton cliqué : ${clickCount} fois;
+
+            // Changer l'image de fond
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+            body.style.backgroundImage = url(${backgrounds[currentBackgroundIndex]});
+        });
+
+        // Basculer entre le mode clair et le mode sombre
         themeButton.addEventListener('click', function () {
             if (body.style.backgroundColor === 'rgb(22, 22, 22)') {
+                // Mode clair
                 body.style.backgroundColor = '#0d1117';
                 body.style.color = '#c9d1d9';
                 container.style.backgroundColor = 'rgba(20, 24, 28, 0.9)';
                 themeButton.textContent = 'Changer de Thème';
             } else {
+                // Mode sombre
                 body.style.backgroundColor = '#161616';
                 body.style.color = '#f5f5f5';
                 container.style.backgroundColor = '#333';
                 themeButton.textContent = 'Revenir au Thème Clair';
             }
         });
-
-        // Redirection vers la page CV
-        const cvButton = document.getElementById('cvButton');
-        cvButton.addEventListener('click', function () {
-            window.location.href = 'cv.html';
-        });
     </script>
+    <!-- Ajout du bouton pour ouvrir le CV -->
+<button id="cvButton">Voir mon CV</button>
+
+<script>
+    // Redirige vers la page cv.html au clic sur le bouton
+    document.getElementById('cvButton').addEventListener('click', function() {
+        window.location.href = 'cv.html';
+    });
+</script>
+
 </body>
 </html>
