@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Déploiement WEB</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            background-size: cover;
+            background-position: center;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+        .container {
+            text-align: center;
+            background: rgba(20, 24, 28, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.5s;
+        }
+        #title {
+            font-size: 2.5em;
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #f0f6fc;
+            margin-bottom: 20px;
+        }
+        .author, .info-section {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #8b949e;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #21262d;
+            color: #58a6ff;
+            border: 2px solid #58a6ff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #39d353;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Projet Déploiement WEB</h1>
+        <h2 class="subtitle">L3_SEM</h2>
+        <p class="author">Réalisé par : <span id="name">Majdi Dridi</span></p>
+        
+        <!-- Bouton pour afficher un message -->
+        <button id="infoButton">Afficher un message</button>
+        <p id="message" style="display: none;">Bienvenue sur le projet de déploiement WEB !</p>
+
+        <!-- Sélecteur de thème -->
+        <div class="theme-switcher">
+            <button id="themeButton">Changer de Thème</button>
+        </div>
+
+        <!-- Informations personnelles -->
+        <div class="info-section">
+            <h3>À propos de Majdi Dridi</h3>
+            <ul>
+                <li><strong>Âge :</strong> 21 ans</li>
+                <li><strong>Spécialité :</strong> Systèmes embarqués et mobiles</li>
+                <li><strong>Institut :</strong> ISET Radès</li>
+                <li><strong>Projets notables :</strong>
+                    <ul>
+                        <li>HelpCasaMobile : Gestion de services à domicile</li>
+                        <li>Site de location de voitures</li>
+                        <li>TempSense Pro : Application Android avec capteur DHT11 et ESP32</li>
+                    </ul>
+                </li>
+                <li><strong>Logiciels préférés :</strong> Android Studio, XAMPP, PlatformIO</li>
+            </ul>
+        </div>
+
+        <!-- Bouton pour ouvrir le CV -->
+        <button id="cvButton">Voir mon CV</button>
+    </div>
+
+    <script>
+        // Afficher ou cacher un message
+        const infoButton = document.getElementById('infoButton');
+        const message = document.getElementById('message');
+        infoButton.addEventListener('click', function () {
+            message.style.display = message.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Changer de thème
+        const themeButton = document.getElementById('themeButton');
+        const body = document.body;
+        const container = document.querySelector('.container');
+        themeButton.addEventListener('click', function () {
+            if (body.style.backgroundColor === 'rgb(22, 22, 22)') {
+                body.style.backgroundColor = '#0d1117';
+                body.style.color = '#c9d1d9';
+                container.style.backgroundColor = 'rgba(20, 24, 28, 0.9)';
+                themeButton.textContent = 'Changer de Thème';
+            } else {
+                body.style.backgroundColor = '#161616';
+                body.style.color = '#f5f5f5';
+                container.style.backgroundColor = '#333';
+                themeButton.textContent = 'Revenir au Thème Clair';
+            }
+        });
+
+        // Redirection vers la page CV
+        const cvButton = document.getElementById('cvButton');
+        cvButton.addEventListener('click', function () {
+            window.location.href = 'cv.html';
+        });
+    </script>
+</body>
+</html>
